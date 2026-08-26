@@ -1,77 +1,86 @@
 // ============================================================
-// DEVICTOR — Design Tokens v2.0
+// DEVICTOR — Design Tokens v3.0 (Corporate B2B Palette)
 // ============================================================
 
-// ── Paleta Principal (Dark Theme) ──────────────────────────
-$color-bg:           #080d1a;       // fundo base profundo
-$color-bg-surface:   #0d1526;       // superfície elevada
-$color-bg-card:      #111c35;       // cards
-$color-bg-card-alt:  #0f1a2e;       // cards alternados
+// ── Paleta Corporativa (Dark Theme) ────────────────────────
+// Canvas / Background layers
+$color-bg:              #09090b;   // --color-canvas: preto profundo neutro
+$color-bg-surface:      #11141b;   // --color-surface: fundo de cards e containers
+$color-bg-card:         #11141b;   // alias para surface
+$color-bg-card-alt:     #181d27;   // --color-surface-elevated: modais e badges
 
-$color-accent:       #00d4e0;       // ciano vibrante (principal)
-$color-accent-dark:  #00959e;       // ciano escurecido (hover)
-$color-accent-glow:  rgba(0, 212, 224, 0.25); // glow para sombras
+// Brand — Cobalto elétrico
+$color-accent:          #2563eb;   // --color-brand: links e botões primários
+$color-accent-dark:     #1d4ed8;   // hover escurecido
+$color-accent-hover:    #3b82f6;   // --color-brand-hover
+$color-accent-glow:     rgba(37, 99, 235, 0.25);
 
-$color-text:         #a8b4d0;       // texto base
-$color-text-muted:   #5c6e8f;       // texto apagado
-$color-text-light:   #cdd6f4;       // texto claro
-$color-text-bright:  #e8eaf6;       // texto mais brilhante
+// Secondary accent — Emerald
+$color-emerald:         #10b981;   // --color-accent-emerald: status e badges operacionais
 
-$color-border:       rgba(0, 212, 224, 0.12);  // borda sutil
-$color-border-hover: rgba(0, 212, 224, 0.35);  // borda hover
+// Text
+$color-text:            #94a3b8;   // --color-text-muted
+$color-text-muted:      #64748b;   // texto apagado
+$color-text-light:      #cbd5e1;   // texto claro
+$color-text-bright:     #f8fafc;   // --color-text-primary: contraste 15.8:1
+
+// Borders
+$color-border:          #222734;   // --color-border-subtle
+$color-border-hover:    rgba(37, 99, 235, 0.4);
 
 // ── Paleta Tema Claro ───────────────────────────────────────
-$light-bg:              #f4f6fb;
+$light-bg:              #f8fafc;
 $light-bg-surface:      #ffffff;
 $light-bg-card:         #ffffff;
-$light-text:            #1a2240;
-$light-text-muted:      #607090;
-$light-accent:          #007ea8;
-$light-accent-dark:     #005b7a;
-$light-accent-darker:   #004d68;  // pre-computed: darken($light-accent, 10-15%)
-$light-accent-glow:     rgba(0, 126, 168, 0.15);
-$light-border:          rgba(0, 126, 168, 0.15);
-$light-border-hover:    rgba(0, 126, 168, 0.4);
+$light-text:            #0f172a;
+$light-text-muted:      #475569;
+$light-accent:          #2563eb;
+$light-accent-dark:     #1d4ed8;
+$light-accent-darker:   #1e40af;
+$light-accent-glow:     rgba(37, 99, 235, 0.15);
+$light-border:          rgba(37, 99, 235, 0.15);
+$light-border-hover:    rgba(37, 99, 235, 0.4);
 
-// Dark accent variants (pre-computed, no darken() needed)
-$color-accent-20:    #009198;   // darken($color-accent, 20%)
-$color-accent-10:    #00b8c4;   // darken($color-accent, 10%)
+// Pre-computed accent variants
+$color-accent-20:       #1d4ed8;
+$color-accent-10:       #3b82f6;
 
 // ── Gradientes ─────────────────────────────────────────────
-$gradient-accent:    linear-gradient(135deg, #00d4e0, #0077ff);
-$gradient-bg-mesh:   radial-gradient(ellipse at 20% 50%, rgba(0, 212, 224, 0.05) 0%, transparent 60%),
-                     radial-gradient(ellipse at 80% 20%, rgba(0, 119, 255, 0.04) 0%, transparent 60%),
-                     radial-gradient(ellipse at 50% 90%, rgba(0, 212, 224, 0.03) 0%, transparent 50%);
-$gradient-card:      linear-gradient(145deg, #111c35, #0d1526);
-$gradient-hero:      linear-gradient(180deg, transparent 0%, rgba(8, 13, 26, 0.3) 100%);
+$gradient-accent:    linear-gradient(135deg, #2563eb, #10b981);
+$gradient-bg-mesh:   radial-gradient(ellipse at 20% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 60%),
+                     radial-gradient(ellipse at 80% 20%, rgba(16, 185, 129, 0.04) 0%, transparent 60%),
+                     radial-gradient(ellipse at 50% 90%, rgba(37, 99, 235, 0.03) 0%, transparent 50%);
+$gradient-card:      linear-gradient(145deg, #181d27, #11141b);
+$gradient-hero:      linear-gradient(180deg, transparent 0%, rgba(9, 9, 11, 0.3) 100%);
 
 // ── Sombras ────────────────────────────────────────────────
-$shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.3);
-$shadow-md:    0 4px 20px rgba(0, 0, 0, 0.4);
-$shadow-lg:    0 8px 40px rgba(0, 0, 0, 0.5);
-$shadow-glow:  0 0 20px rgba(0, 212, 224, 0.2), 0 4px 20px rgba(0, 0, 0, 0.4);
-$shadow-glow-strong: 0 0 40px rgba(0, 212, 224, 0.35), 0 8px 30px rgba(0, 0, 0, 0.5);
+$shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.35);
+$shadow-md:    0 4px 20px rgba(0, 0, 0, 0.45);
+$shadow-lg:    0 8px 40px rgba(0, 0, 0, 0.55);
+$shadow-glow:  0 0 20px rgba(37, 99, 235, 0.2), 0 4px 20px rgba(0, 0, 0, 0.4);
+$shadow-glow-strong: 0 0 40px rgba(37, 99, 235, 0.35), 0 8px 30px rgba(0, 0, 0, 0.5);
 
 // ── Bordas ─────────────────────────────────────────────────
-$radius-sm:    6px;
-$radius-md:    12px;
-$radius-lg:    20px;
+$radius-sm:    4px;
+$radius-md:    8px;
+$radius-lg:    16px;
+$radius-xl:    24px;
 $radius-full:  9999px;
 
 // ── Tipografia ─────────────────────────────────────────────
 $font-primary:   'Inter', sans-serif;
 $font-heading:   'Outfit', sans-serif;
 
-$font-size-xs:   0.75rem;
-$font-size-sm:   0.875rem;
-$font-size-base: 1rem;
-$font-size-lg:   1.125rem;
-$font-size-xl:   1.25rem;
-$font-size-2xl:  1.5rem;
-$font-size-3xl:  2rem;
-$font-size-4xl:  2.5rem;
-$font-size-5xl:  3.5rem;
-$font-size-6xl:  4.5rem;
+$font-size-xs:   0.75rem;    // 12px
+$font-size-sm:   0.875rem;   // 14px
+$font-size-base: 1rem;       // 16px
+$font-size-lg:   1.125rem;   // 18px
+$font-size-xl:   1.25rem;    // 20px
+$font-size-2xl:  1.5rem;     // 24px
+$font-size-3xl:  2rem;       // 32px
+$font-size-4xl:  2.5rem;     // 40px
+$font-size-5xl:  3.5rem;     // 56px
+$font-size-6xl:  4.5rem;     // 72px
 
 // ── Transições ─────────────────────────────────────────────
 $transition-fast:   all 0.2s ease;
@@ -87,9 +96,22 @@ $breakpoint-lg:  992px;
 $breakpoint-xl:  1200px;
 $breakpoint-2xl: 1400px;
 
-// ── Espaçamento ────────────────────────────────────────────
-$spacing-section: 6rem;
-$spacing-section-sm: 4rem;
+// ── Espaçamento (Grade Modular 4px) ────────────────────────
+// Todos os espaçamentos seguem rigorosamente múltiplos de 4px
+// 4 | 8 | 12 | 16 | 24 | 32 | 48 | 64 | 80 | 96
+$spacing-1:  0.25rem;  // 4px
+$spacing-2:  0.5rem;   // 8px
+$spacing-3:  0.75rem;  // 12px
+$spacing-4:  1rem;     // 16px
+$spacing-6:  1.5rem;   // 24px
+$spacing-8:  2rem;     // 32px
+$spacing-12: 3rem;     // 48px
+$spacing-16: 4rem;     // 64px
+$spacing-20: 5rem;     // 80px
+$spacing-24: 6rem;     // 96px
+
+$spacing-section:    $spacing-24; // 96px
+$spacing-section-sm: $spacing-16; // 64px
 
 // ── Z-Index ────────────────────────────────────────────────
 $z-base:    1;
@@ -98,7 +120,7 @@ $z-modal:   100;
 $z-header:  1000;
 $z-tooltip: 2000;
 
-// ── Retrocompatibilidade (aliases v1) ──────────────────────
+// ── Retrocompatibilidade (aliases v1/v2) ───────────────────
 $background-color:              $color-bg;
 $text-color:                    $color-text;
 $primary-color:                 $color-accent;

@@ -15,94 +15,62 @@
         }
     }
 
-    // ── Imagem ─────────────────────────────────────────────
+    // ── Imagem — Moldura Contemporânea ─────────────────────
     &__image-container {
         position: relative;
         display: flex;
-        @include imageSize(260px);
-        z-index: 0;
+        align-items: center;
+        justify-content: center;
+        width: 260px;
+        height: 260px;
         flex-shrink: 0;
+        z-index: 0;
+
+        // Moldura com bordas arredondadas — sem hexágono
+        border-radius: 16px;
+        border: 1px solid #222734;
+        box-shadow:
+            0 0 0 4px rgba(37, 99, 235, 0.08),
+            0 8px 32px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
 
         @include respond-to($breakpoint-md) {
-            @include imageSize(300px);
+            width: 300px;
+            height: 300px;
         }
 
         animation: slideInLeft both;
         animation-timeline: view(100% 5%);
 
-        &--brackets {
-            position: relative;
-            display: flex;
-            @include imageSize(260px);
-            z-index: 0;
-            clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%);
-
-            @include respond-to($breakpoint-md) {
-                @include imageSize(300px);
-            }
-        }
-
-        &::before,
-        &::after {
-            content: "";
-            position: absolute;
-            width: 85px;
-            height: 100%;
-            top: 0;
-            background: $gradient-accent;
-            z-index: 1;
-            transition: $transition-base;
-
-            @include respond-to($breakpoint-md) {
-                width: 100px;
-            }
-        }
-
-        &::before {
-            left: -1.7rem;
-            clip-path: polygon(100% 0%, 25% 50%, 100% 100%, 75% 100%, 0% 50%, 75% 0%);
-
-            @include respond-to($breakpoint-md) {
-                left: -2rem;
-            }
-        }
-
-        &::after {
-            right: -1.7rem;
-            clip-path: polygon(25% 0, 100% 50%, 25% 100%, 0% 100%, 75% 50%, 0% 0%);
-
-            @include respond-to($breakpoint-md) {
-                right: -2rem;
-            }
-        }
+        // Remove pseudo-elements do hexágono
+        &::before, &::after { display: none; }
 
         &:hover {
-            &::before, &::after {
-                filter: drop-shadow(0 0 8px rgba($color-accent, 0.5));
-            }
+            border-color: rgba(37, 99, 235, 0.4);
+            box-shadow:
+                0 0 0 4px rgba(37, 99, 235, 0.15),
+                0 12px 40px rgba(0, 0, 0, 0.55);
         }
     }
 
     &__image {
-        @include imageSize(100%);
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%);
+        // Sem clip-path hexagonal
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     &__image-overlay {
         position: absolute;
-        top: 0;
-        left: 0;
-        @include imageSize(100%);
-        background-color: rgba($color-accent, 0.15);
-        clip-path: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0% 50%, 25% 0%);
+        inset: 0;
+        background-color: rgba($color-accent, 0.1);
         opacity: 0;
         transition: opacity 0.4s;
     }
 
     &__image-container:hover {
-        .about__image { transform: scale(1.07); }
+        .about__image { transform: scale(1.05); }
         .about__image-overlay { opacity: 1; }
     }
 
@@ -133,23 +101,23 @@
         }
     }
 
-    // ── Stats Cards ────────────────────────────────────────
+    // ── Stats Cards ───────────────────────────────────────────
     &__stats {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr); // Mobile: 2 colunas
+        gap: 0.75rem; // 12px
         width: 100%;
         margin: 0.5rem 0;
 
-        @include respond-max($breakpoint-sm) {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.5rem;
+        @include respond-to($breakpoint-sm) {
+            grid-template-columns: repeat(4, 1fr); // Tablet+: 4 colunas
+            gap: 1rem; // 16px
         }
     }
 
     &__stat {
-        background: $color-bg-card;
-        border: 1px solid $color-border;
+        background: rgba(17, 20, 27, 0.7);
+        border: 1px solid #222734;
         border-radius: $radius-md;
         padding: 1rem 0.75rem;
         text-align: center;
@@ -157,18 +125,8 @@
         position: relative;
         overflow: hidden;
 
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: $gradient-accent;
-        }
-
         &:hover {
-            border-color: $color-border-hover;
+            border-color: rgba(59, 130, 246, 0.4);
             transform: translateY(-3px);
             box-shadow: $shadow-glow;
         }
@@ -176,11 +134,16 @@
         &-value {
             display: block;
             font-family: $font-heading;
-            font-size: $font-size-2xl;
+            font-size: $font-size-xl; // 20px — compacto para 4 itens
             font-weight: 800;
             @include gradient-text($gradient-accent);
             line-height: 1;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.25rem; // 4px
+            word-break: keep-all;
+
+            @include respond-to($breakpoint-sm) {
+                font-size: $font-size-2xl; // 24px em tablet+
+            }
         }
 
         &-label {
@@ -192,25 +155,32 @@
         }
     }
 
-    // ── Botão CV ───────────────────────────────────────────
+    // ── Botão CV — Secundário Glassmorphism ────────────────────────
     &__cv-button {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.875rem 1.75rem;
-        background: $gradient-accent;
-        color: $color-bg;
-        border-radius: $radius-full;
-        font-weight: 700;
+        padding: 0.75rem 1.5rem; // 12px 24px
+        background: rgba(24, 29, 39, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #f8fafc;
+        border-radius: 8px;
+        font-weight: 600;
         font-size: $font-size-sm;
-        transition: $transition-bounce;
-        box-shadow: 0 4px 15px rgba($color-accent, 0.3);
-        letter-spacing: 0.02em;
+        transition: all 0.2s ease;
+        letter-spacing: 0.01em;
 
         &:hover {
-            color: $color-bg;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba($color-accent, 0.45);
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(30, 36, 50, 0.85);
+            color: #f8fafc;
+            transform: translateY(-2px);
+        }
+
+        &:focus-visible {
+            outline: 2px solid #2563eb;
+            outline-offset: 3px;
         }
 
         i { font-size: 0.9em; }

@@ -1,23 +1,27 @@
 // ============================================================
-// DEVICTOR — Projects v2.0
+// DEVICTOR — Projects v3.0 (B2B Flagship Case Studies)
 // ============================================================
 
 .projects {
     &__grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 1.75rem;
+        gap: 1.5rem; // 24px — múltiplo de 8px
 
         @include respond-to($breakpoint-md) {
             grid-template-columns: repeat(2, 1fr);
         }
 
-        @include respond-to($breakpoint-lg) {
-            grid-template-columns: repeat(3, 1fr);
+        // Dois cards em destaque lado a lado (desktop)
+        &--two-col {
+            @include respond-to($breakpoint-lg) {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     }
 }
 
+// ── Card Flagship B2B ──────────────────────────────────────
 .project-card {
     background: $gradient-card;
     border: 1px solid $color-border;
@@ -28,7 +32,10 @@
     display: flex;
     flex-direction: column;
 
-    // Accent top stripe
+    animation: fadeInUp both;
+    animation-timeline: view(70% 5%);
+
+    // Accent top stripe — cobalto para emerald
     &::before {
         content: '';
         position: absolute;
@@ -42,9 +49,6 @@
         transition: opacity 0.3s ease;
     }
 
-    animation: fadeInUp both;
-    animation-timeline: view(70% 5%);
-
     &:hover {
         transform: translateY(-6px);
         border-color: $color-border-hover;
@@ -53,6 +57,182 @@
         &::before { opacity: 1; }
     }
 
+    // ── Cabeçalho do Card (Flagship) ──────────────────────
+    &__header {
+        padding: 1.5rem 1.5rem 0;
+    }
+
+    // Linha de logo + badge de categoria
+    &__logo-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem; // 12px
+        margin-bottom: 0.75rem; // 12px
+        flex-wrap: wrap;
+    }
+
+    &__logo {
+        height: 60px;     // altura fixa para consistência
+        width: auto;
+        object-fit: contain;
+        display: block;
+        // SVG com fill original — sem filter para preservar marca
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem; // 4px
+    }
+
+    &__type {
+        font-size: $font-size-xs;
+        font-weight: 600;
+        color: $color-emerald;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+    }
+
+    // ── Corpo do Card ──────────────────────────────────────
+    &__body {
+        padding: 1rem 1.5rem 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; // 16px
+        flex: 1;
+    }
+
+    &__title {
+        font-family: $font-heading;
+        font-size: $font-size-2xl;
+        font-weight: 800;
+        color: $color-text-bright;
+        margin: 0;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+
+    &__subtitle {
+        font-size: $font-size-sm;
+        color: $color-text;
+        margin: 0;
+        font-weight: 400;
+    }
+
+    &__description {
+        color: $color-text;
+        font-size: $font-size-sm;
+        line-height: 1.75;
+        flex: 1;
+
+        strong {
+            color: $color-text-bright;
+            font-weight: 600;
+        }
+
+        kbd {
+            font-family: $font-primary;
+            font-size: $font-size-xs;
+            background: rgba($color-accent, 0.12);
+            color: $color-accent-hover;
+            padding: 0.125rem 0.375rem;
+            border-radius: $radius-sm;
+            border: 1px solid rgba($color-accent, 0.25);
+        }
+    }
+
+    &__tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem; // 8px
+        padding-top: 1rem;  // 16px
+        border-top: 1px solid $color-border;
+    }
+
+    &__tag {
+        background: rgba($color-accent, 0.08);
+        color: $color-accent-hover;
+        padding: 0.25rem 0.75rem; // 4px 12px
+        border-radius: $radius-full;
+        font-size: $font-size-xs;
+        font-weight: 600;
+        border: 1px solid rgba($color-accent, 0.18);
+        letter-spacing: 0.02em;
+        transition: $transition-fast;
+
+        &:hover {
+            background: rgba($color-accent, 0.18);
+            border-color: rgba($color-accent, 0.4);
+        }
+    }
+
+    // ── Ações do Card (CTA Buttons) ────────────────────────
+    &__actions {
+        display: flex;
+        gap: 0.75rem; // 12px
+        padding: 1.25rem 1.5rem; // 20px 24px
+        border-top: 1px solid $color-border;
+        flex-wrap: wrap;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem; // 8px
+        padding: 0.625rem 1.25rem; // 10px 20px
+        border-radius: $radius-md;
+        font-size: $font-size-sm;
+        font-weight: 600;
+        transition: $transition-base;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1.5px solid transparent;
+
+        i { font-size: 0.85em; }
+
+        // Focus ring acessível (WCAG 2.2 AA)
+        &:focus-visible {
+            outline: 2px solid $color-accent;
+            outline-offset: 2px;
+        }
+
+        // Botão primário — sólido sutil
+        &--primary {
+            background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+            border: 1px solid rgba(59, 130, 246, 0.4);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(37, 99, 235, 0.2);
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 6px 16px rgba(37, 99, 235, 0.3);
+                color: #ffffff;
+            }
+        }
+
+        // Botão secundário — outline ghost
+        &--outline {
+            background: rgba(24, 29, 39, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+
+            &:hover {
+                border-color: rgba(59, 130, 246, 0.4);
+                background: rgba(30, 36, 50, 0.85);
+                color: #f8fafc;
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    // ── Card com imagem (legado — mantido para compatibilidade) ──
     &__image-container {
         position: relative;
         overflow: hidden;
@@ -106,62 +286,16 @@
             border-color: transparent;
             transform: scale(1.05);
         }
+
+        &:focus-visible {
+            outline: 2px solid #fff;
+            outline-offset: 2px;
+        }
     }
 
     &:hover {
         .project-card__image { transform: scale(1.08); }
         .project-card__overlay { opacity: 1; }
-    }
-
-    // ── Corpo do Card ──────────────────────────────────────
-    &__body {
-        padding: 1.25rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-        flex: 1;
-    }
-
-    &__title {
-        font-family: $font-heading;
-        font-size: $font-size-lg;
-        font-weight: 700;
-        color: $color-text-bright;
-        margin: 0;
-        letter-spacing: -0.01em;
-    }
-
-    &__description {
-        color: $color-text;
-        font-size: $font-size-sm;
-        line-height: 1.7;
-        flex: 1;
-    }
-
-    &__tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-top: auto;
-        padding-top: 0.75rem;
-        border-top: 1px solid $color-border;
-    }
-
-    &__tag {
-        background: rgba($color-accent, 0.08);
-        color: $color-accent;
-        padding: 0.2rem 0.65rem;
-        border-radius: $radius-full;
-        font-size: $font-size-xs;
-        font-weight: 600;
-        border: 1px solid rgba($color-accent, 0.15);
-        letter-spacing: 0.02em;
-        transition: $transition-fast;
-
-        &:hover {
-            background: rgba($color-accent, 0.18);
-            border-color: rgba($color-accent, 0.35);
-        }
     }
 }
 
@@ -177,21 +311,10 @@
             box-shadow: 0 8px 30px rgba($light-accent, 0.15);
         }
 
-        &__overlay {
-            background: linear-gradient(
-                to bottom,
-                rgba($light-accent, 0.82) 0%,
-                rgba($light-accent-darker, 0.95) 100%
-            );
-        }
-
-        &__link {
-            &:hover {
-                color: $light-accent;
-            }
-        }
+        &__type { color: #059669; }
 
         &__title { color: $light-text; }
+        &__subtitle { color: $light-text-muted; }
         &__description { color: $light-text-muted; }
 
         &__tags { border-top-color: $light-border; }
@@ -201,9 +324,45 @@
             color: $light-accent;
             border-color: rgba($light-accent, 0.2);
 
-            &:hover {
-                background: rgba($light-accent, 0.15);
+            &:hover { background: rgba($light-accent, 0.15); }
+        }
+
+        &__actions { border-top-color: $light-border; }
+
+        &__btn {
+            &--primary {
+                background: $light-accent;
+                border-color: $light-accent;
+                color: #fff;
+
+                &:hover {
+                    background: $light-accent-dark;
+                    border-color: $light-accent-dark;
+                    color: #fff;
+                }
             }
+
+            &--outline {
+                color: $light-text;
+                border-color: $light-border;
+
+                &:hover {
+                    border-color: $light-accent;
+                    color: $light-accent;
+                }
+            }
+        }
+
+        &__overlay {
+            background: linear-gradient(
+                to bottom,
+                rgba($light-accent, 0.82) 0%,
+                rgba($light-accent-darker, 0.95) 100%
+            );
+        }
+
+        &__link {
+            &:hover { color: $light-accent; }
         }
     }
 }

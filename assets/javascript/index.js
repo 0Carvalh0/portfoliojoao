@@ -120,18 +120,21 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.key === "Escape") closeMobileMenu();
     });
 
-    // ── Typed.js — Efeito de Digitação ────────────────────────
+    // ── Typed.js — Efeito de Digitação ──────────────────────
+    // Strings complementam o subtítulo estático "Desenvolvedor Front-End"
+    // Evita duplicação visual da mesma string no campo de digitação
     if (typeof Typed !== "undefined") {
         new Typed("#typing-text", {
             strings: [
-                "Desenvolvedor Front-end",
-                "Entusiasta de React.js",
-                "Amante de TypeScript",
-                "Criador de Interfaces",
+                "Angular & Next.js Specialist",
+                "Arquiteturas B2B de Alta Complexidade",
+                "TypeScript | Signals | App Router",
+                "Criador de Interfaces Corporativas",
             ],
-            typeSpeed: 80,
+            typeSpeed: 70,
             backSpeed: 40,
-            backDelay: 1800,
+            backDelay: 2000,
+            startDelay: 800,
             loop: true,
             smartBackspace: true,
         });
@@ -167,11 +170,15 @@ document.addEventListener("DOMContentLoaded", () => {
             { opacity: 0, y: 20 },
             { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", delay: 0.9 }
         );
-        gsap.fromTo(
-            ".hero__scroll-indicator",
-            { opacity: 0 },
-            { opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.4 }
-        );
+        // Scroll indicator — guard para evitar warnings de target não encontrado
+        const scrollIndicator = document.querySelector(".hero__scroll-indicator");
+        if (scrollIndicator) {
+            gsap.fromTo(
+                scrollIndicator,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.8, ease: "power2.out", delay: 1.4 }
+            );
+        }
 
         // Scroll animations — seções
         gsap.utils.toArray(".project-card").forEach((card, i) => {
@@ -248,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ── Contador Animado (Stats) ──────────────────────────────
     const counters = document.querySelectorAll("[data-count]");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (counters.length > 0) {
         const countObserver = new IntersectionObserver(
@@ -256,18 +264,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (!entry.isIntersecting) return;
                     const el     = entry.target;
                     const target = parseInt(el.getAttribute("data-count"), 10);
+                    const prefix = el.getAttribute("data-prefix") || "";
                     const suffix = el.getAttribute("data-suffix") || "+";
-                    animateCounter(el, 0, target, 1200, suffix);
+
+                    if (prefersReducedMotion) {
+                        // Fallback instantâneo para usuários com prefers-reduced-motion
+                        el.textContent = prefix + target + suffix;
+                    } else {
+                        animateCounter(el, 0, target, 1400, prefix, suffix);
+                    }
                     countObserver.unobserve(el);
                 });
             },
-            { threshold: 0.5 }
+            { threshold: 0.4 }
         );
 
         counters.forEach((counter) => countObserver.observe(counter));
     }
 
-    function animateCounter(el, start, end, duration, suffix = "+") {
+    function animateCounter(el, start, end, duration, prefix = "", suffix = "+") {
         const startTime = performance.now();
 
         function update(currentTime) {
@@ -276,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const eased    = 1 - Math.pow(1 - progress, 3); // easeOutCubic
             const current  = Math.round(start + (end - start) * eased);
 
-            el.textContent = current + suffix;
+            el.textContent = prefix + current + suffix;
 
             if (progress < 1) requestAnimationFrame(update);
         }
