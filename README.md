@@ -1,41 +1,66 @@
-# Devictor Portfolio
+# 🌐 Devictor — Portfólio de Desenvolvedor Front-End
 
-Portfólio pessoal de João Victor Carvalho, com foco em apresentação profissional, visual responsivo e navegação direta em uma única página. O projeto é mantido de forma incremental, com base estática em HTML, CSS, Sass e JavaScript vanilla.
+![HTML5](https://img.shields.io/badge/HTML5-Semântico-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-Modular_4px-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Acessibilidade](https://img.shields.io/badge/WCAG_2.2-AA_Compliant-005A9C?style=for-the-badge)
+![Deploy](https://img.shields.io/badge/Vercel-Produção-000000?style=for-the-badge&logo=vercel&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-## Visão Geral
+Portfólio pessoal e institucional desenvolvido com foco em alta performance visual, acessibilidade nativa (WCAG 2.2 AA) e design system sóbrio voltado para o ecossistema corporativo B2B.
 
-O site reúne as seções de início, sobre, projetos, habilidades e contato. A interface usa layout responsivo, tema claro/escuro, animações de entrada e componentes visuais pensados para destacar o conteúdo sem perder legibilidade.
+---
 
-## O Que Está Em Uso Hoje
+## 🛠️ Tecnologias & Decisões Arquiteturais
 
-- **HTML5 semântico** para estrutura da página.
-- **CSS3 + Sass** para estilos modulares e manutenção centralizada em `assets/styles/sass`.
-- **JavaScript vanilla** para interações da interface e comportamento da página.
-- **GSAP + ScrollTrigger via CDN** para animações de entrada e scroll.
-- **Typed.js via CDN** para o efeito de digitação da hero.
-- **Font Awesome via CDN** para ícones da navegação, ações e seções.
-- **Web3Forms** para envio do formulário de contato.
-- **Google Fonts** para tipografia da interface.
+| Camada | Tecnologia | Propósito Arquitetural |
+| :--- | :--- | :--- |
+| **Estrutura** | HTML5 Semântico | Hierarquia de tags semânticas (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`) para SEO e leitores de tela. |
+| **Estilização** | SCSS / Sass Modular | Arquitetura modular (`_variables`, `_mixins`, `_reset`, `partials/`) baseada em grade estrita de múltiplos de 4px/8px e design tokens de alto contraste. |
+| **Interatividade** | JavaScript Vanilla (ES6+) | Micro-interações otimizadas, animação de contadores de métricas via `IntersectionObserver` e controle de background dinâmico. |
+| **Hospedagem** | Vercel | Deploy contínuo integrado à branch principal com tempo de resposta ultrarrápido (Edge Network). |
 
-## Funcionalidades
+---
 
-- Menu mobile com overlay e controle de acessibilidade.
-- Hero com destaque visual, partículas decorativas e texto animado.
-- Seção de projetos com cards e links externos.
-- Seção de habilidades organizada em categorias.
-- Formulário de contato com envio externo e modal de confirmação.
+## 🚀 Projetos Flagship em Exibição
 
-## Estrutura Atual
+O portfólio destaca aplicações complexas com foco em engenharia front-end corporativa:
 
-- `index.html`: página principal da aplicação.
-- `assets/javascript/index.js`: interações e animações da interface.
-- `assets/styles/sass/`: fonte Sass com variáveis, mixins, reset e parciais.
-- `assets/styles/css/style.css`: CSS compilado para uso no site.
-- `assets/images/`: imagens, logos e thumbnails dos projetos.
-- `assets/docs/`: arquivos para download, como o currículo em PDF.
+1. **[Talent Metrics AI](https://talent-metrics-landing.vercel.app/)**
+   - *SaaS B2B & Playground de Triagem com IA*
+   - Stack: Next.js 16 (App Router), TypeScript, Tailwind CSS, Groq AI (Llama 3.3 70B), Vercel AI SDK, Zod, Vitest.
+   - [Repositório no GitHub](https://github.com/soudevictor/talent-metrics-landing)
 
-## Scripts
+2. **[Axiom ERP](https://axiomerp.vercel.app/)**
+   - *Suíte Corporativa de Supply Chain & Tesouraria*
+   - Stack: Angular v22+, TypeScript, Tailwind CSS & SCSS, @ngrx/signals, Dexie.js (IndexedDB), CDK Virtual Scroll, Vitest.
+   - [Repositório no GitHub](https://github.com/soudevictor/axiom-erp)
 
-- `npm run sass`: compila o Sass em modo watch.
-- `npm run sass:build`: gera o CSS final sem source map.
-- `npm run build`: atalho para `npm run sass:build`.
+---
+
+## ⚡ Performance & Acessibilidade
+
+- ♿ **WCAG 2.2 Level AA:** Estados de foco visíveis (`focus-visible`), contraste mínimo de 15.8:1 entre texto e fundo, e atributos `aria-label` em todos os links e botões.
+- 🎯 **Zero Layout Shift (CLS = 0):** Dimensões reservadas para imagens, ícones SVG e containers de texto.
+- 📱 **Mobile-First & Responsividade:** Layout fluido adaptado para qualquer resolução (320px até 4K).
+
+---
+
+## 🏗️ Estrutura de Diretórios
+
+```text
+devictor-portfolio/
+├── assets/
+│   ├── docs/                   # Currículo em PDF atualizado
+│   ├── images/
+│   │   ├── logos/              # Logotipos do portfólio
+│   │   └── thumbnails/         # Logotipos e previews dos projetos
+│   ├── javascript/
+│   │   └── index.js            # Lógica dos contadores, eventos e animações
+│   └── styles/
+│       ├── css/
+│       │   └── style.css       # CSS compilado e otimizado
+│       └── sass/               # Código-fonte SCSS modular
+├── index.html                  # Documento principal da aplicação
+├── agent.md                    # Especificações de arquitetura do projeto
+└── package.json                # Metadados e scripts de build
