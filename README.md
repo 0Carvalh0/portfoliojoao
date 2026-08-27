@@ -64,3 +64,44 @@ devictor-portfolio/
 ├── index.html                  # Documento principal da aplicação
 ├── agent.md                    # Especificações de arquitetura do projeto
 └── package.json                # Metadados e scripts de build
+```
+
+---
+
+## 💻 Como Executar Localmente
+
+### Pré-requisitos
+- Node.js (v18+)
+- Compilador Sass (ou extensão Live Sass Compiler no VS Code)
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone https://github.com/soudevictor/devictor-portfolio.git
+   cd devictor-portfolio
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+3. **Inicie a compilação do SCSS em tempo real:**
+   ```bash
+   npm run sass:watch
+   ```
+
+4. **Abra o arquivo `index.html`** no seu navegador ou utilize a extensão **Live Server** no VS Code.
+
+---
+
+## 👤 Autor
+
+Desenvolvido por **João Victor Carvalho de Souza (`devictor`)**
+
+---
+
+## 📝 Licença
+
+Distribuído sob a licença [MIT](LICENSE).
